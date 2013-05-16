@@ -1,4 +1,7 @@
 Revision history for Dancer2-Plugin-DBIC
 
+0.0002  2013-05-16
+        No longer require a specific version of Dancer2.
+
 0.0001  2013-03-05
         First release.
