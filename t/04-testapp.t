@@ -19,7 +19,7 @@ if ($@) {
 
 my (undef, $dbfile) = tempfile(SUFFIX => '.db');
 
-set plugins => {
+t::lib::TestApp::set plugins => {
     DBIC => {
         foo => {
             dsn =>  "dbi:SQLite:dbname=$dbfile",

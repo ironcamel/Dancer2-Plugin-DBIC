@@ -11,7 +11,7 @@ use Module::Load;
 my $schemas = {};
 
 sub schema {
-    my ($self, $name) = plugin_args(@_);
+    my ($dsl, $name) = @_;
     my $cfg = plugin_setting;
 
     if (not defined $name) {
@@ -54,14 +54,14 @@ sub schema {
 };
 
 sub resultset {
-    my ($self, $rset_name) = plugin_args(@_);
-    return schema->resultset($rset_name);
+    my ($dsl, $rset_name) = @_;
+    return schema($dsl)->resultset($rset_name);
 }
 
 register schema    => \&schema;
 register resultset => \&resultset;
 register rset      => \&resultset;
-register_plugin for_versions => [ 1, 2 ];
+register_plugin;
 
 # ABSTRACT: DBIx::Class interface for Dancer2 applications
 
