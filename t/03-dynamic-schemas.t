@@ -5,7 +5,7 @@ use strict;
 use warnings;
 use Test::More;
 
-use Dancer2 qw(:syntax !pass);
+use Dancer2 qw(:tests);
 use Dancer2::Plugin::DBIC;
 use DBI;
 use File::Temp qw(tempfile);

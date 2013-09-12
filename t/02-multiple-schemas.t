@@ -1,10 +1,10 @@
 use strict;
 use warnings;
 use lib 't/lib';
-use Test::More tests => 9, import => ['!pass'];
+use Test::More tests => 9;
 use Test::Exception;
 
-use Dancer2 qw(:syntax);
+use Dancer2 qw(:tests);
 use Dancer2::Plugin::DBIC;
 use DBI;
 use File::Temp qw(tempfile);
