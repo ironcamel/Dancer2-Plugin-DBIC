@@ -2,7 +2,8 @@ use strict;
 use warnings;
 use Test::More;
 
-use Dancer2 qw(:tests);
+use Dancer2;
+use Dancer2::Test;
 use Dancer2::Plugin::DBIC;
 use t::lib::TestApp;
 use Dancer2::Test apps => [ 't::lib::TestApp' ];
