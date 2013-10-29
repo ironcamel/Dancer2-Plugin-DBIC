@@ -1,5 +1,9 @@
 Revision history for Dancer2-Plugin-DBIC
 
+0.0005  2013-10-29
+        Fixed tests again. Dancer2 removed the :tests import option.
+        Thanks ennio (https://github.com/scriplit).
+
 0.0004  2013-09-12
         Fixed tests again. Seems like Dancer2 removed the :syntax import option.
 

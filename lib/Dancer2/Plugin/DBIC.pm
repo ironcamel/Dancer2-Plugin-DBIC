@@ -234,6 +234,10 @@ David Precious <davidp@preshweb.co.uk>
 
 =item *
 
+ennio <L<https://github.com/scriplit>>
+
+=item *
+
 Fabrice Gabolde <L<https://github.com/fgabolde>>
 
 =item *
