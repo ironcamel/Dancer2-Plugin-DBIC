@@ -140,7 +140,7 @@ advantage of that.
 
 The schema_class option, should be a proper Perl package name that
 Dancer2::Plugin::DBIC will use as a L<DBIx::Class::Schema> class.
-Optionally, a database configuation may have user, pass, and options parameters
+Optionally, a database configuration may have user, pass, and options parameters
 as described in the documentation for C<connect()> in L<DBI>.
 
 You may also declare your connection information in the following format
