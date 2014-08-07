@@ -30,13 +30,13 @@ sub schema {
 
     my @conn_info = $options->{connect_info}
         ? @{$options->{connect_info}}
-        : @$options{qw(dsn user pass options)};
+        : @$options{qw(dsn user password options)};
+    if ( exists $options->{pass} ) {
+        warn "The pass option is deprecated. Use password instead.";
+        $conn_info[2] = $options->{pass};
+    }
 
-    warn "The pckg option is deprecated. Please use schema_class instead."
-        if $options->{pckg};
-    my $schema_class = $options->{schema_class} || $options->{pckg};
-
-    if ($schema_class) {
+    if ( my $schema_class = $options->{schema_class} ) {
         $schema_class =~ s/-/::/g;
         eval { load $schema_class };
         die "Could not load schema_class $schema_class" if $@;
@@ -119,7 +119,7 @@ In this example, there are 2 databases configured named C<default> and C<foo>:
           dsn: dbi:mysql:foo
           schema_class: Foo::Schema
           user: bob
-          pass: secret
+          password: secret
           options:
             RaiseError: 1
             PrintError: 1
@@ -140,8 +140,8 @@ advantage of that.
 
 The schema_class option, should be a proper Perl package name that
 Dancer2::Plugin::DBIC will use as a L<DBIx::Class::Schema> class.
-Optionally, a database configuration may have user, pass, and options parameters
-as described in the documentation for C<connect()> in L<DBI>.
+Optionally, a database configuration may have user, password, and options
+parameters as described in the documentation for C<connect()> in L<DBI>.
 
 You may also declare your connection information in the following format
 (which may look more familiar to DBIC users):
