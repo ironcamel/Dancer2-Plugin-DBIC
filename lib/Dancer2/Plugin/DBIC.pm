@@ -5,7 +5,7 @@ package Dancer2::Plugin::DBIC;
 use strict;
 use warnings;
 use utf8;
-use Dancer2::Plugin;
+use Dancer2::Plugin qw(:no_dsl);
 use Module::Load;
 
 my $schemas = {};
