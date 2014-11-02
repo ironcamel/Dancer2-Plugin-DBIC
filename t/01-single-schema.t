@@ -5,8 +5,6 @@ use Test::More tests => 4;
 use Test::Exception;
 
 use Dancer2;
-use Dancer2::Test;
-
 use Dancer2::Plugin::DBIC;
 use DBI;
 use File::Temp qw(tempfile);

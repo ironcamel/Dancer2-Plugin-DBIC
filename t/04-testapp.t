@@ -1,21 +1,23 @@
+#perl
+
 use strict;
 use warnings;
 use Test::More;
-
+use Plack::Test;
+use HTTP::Request::Common qw(GET DELETE);
 use Dancer2;
-use Dancer2::Test;
 use Dancer2::Plugin::DBIC;
-use t::lib::TestApp;
-use Dancer2::Test apps => [ 't::lib::TestApp' ];
 use DBI;
 use File::Temp qw(tempfile);
+use File::Spec;
+use lib File::Spec->catdir( 't', 'lib' );
+
+use TestApp;
 
 eval { require DBD::SQLite; require DBIx::Class::Schema::Loader };
 if ($@) {
     plan skip_all =>
         'DBD::SQLite and DBIx::Class::Schema::Loader required for these tests';
-} else {
-    plan tests => 7;
 }
 
 my (undef, $dbfile) = tempfile(SUFFIX => '.db');
@@ -38,17 +40,85 @@ my @sql = (
 
 $dbh->do($_) for @sql;
 
-response_status_is    [ GET => '/' ], 200,   "GET / is found";
-response_content_like [ GET => '/' ], qr/2/, "content looks good for /";
+my $app = Dancer2->runner->psgi_app;
+is( ref $app, 'CODE', 'Got app' );
 
-response_status_is [ GET => '/user/1' ], 200, 'GET /user/1 is found';
+my $test = Plack::Test->create($app);
 
-response_content_like [ GET => '/user/1' ], qr/sukria/,
-  'content looks good for /user/1';
-response_content_like [ GET => '/user/2' ], qr/bigpresh/,
-  "content looks good for /user/2";
+subtest 'root' => sub {
+    my $res = $test->request( GET '/' );
 
-response_status_is [ DELETE => '/user/2' ], 200, 'DELETE /user/2 is ok';
-response_content_like [ GET => '/' ], qr/1/, 'content looks good for /';
+    like(
+        $res->header('Content-Type'),
+        qr{text/html},
+        'Content-Type set up correctly',
+    );
+
+    like(
+        $res->content,
+        qr/2/,
+        'content looks good for /',
+    );
+};
+
+subtest 'user1' => sub {
+    my $res = $test->request( GET '/user/1' );
+
+    is(
+        $res->status_line,
+        '200 OK',
+        'GET /user/1 is found',
+    );
+
+    like(
+        $res->content,
+        qr/sukria/,
+        'content looks good for /user/1',
+    );
+};
+
+subtest 'user2' => sub {
+    my $res = $test->request( GET '/user/2' );
+
+    is(
+        $res->status_line,
+        '200 OK',
+        'GET /user/2 is found',
+    );
+
+    like(
+        $res->content,
+        qr/bigpresh/,
+        "content looks good for /user/2",
+    );
+};
+
+subtest 'delete' => sub {
+    my $res = $test->request( DELETE '/user/2' );
+
+    is(
+        $res->status_line,
+        '200 OK',
+        'DELETE /user/2 is ok',
+    );
+};
+
+subtest 'root again' => sub {
+    my $res = $test->request( GET '/' );
+
+    like(
+        $res->header('Content-Type'),
+        qr{text/html},
+        'Content-Type set up correctly',
+    );
+
+    like(
+        $res->content,
+        qr/1/,
+        'content looks good for /',
+    );
+};
 
 unlink $dbfile;
+
+done_testing;
