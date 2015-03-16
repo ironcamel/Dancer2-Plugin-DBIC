@@ -6,6 +6,7 @@ use strict;
 use warnings;
 use utf8;
 use Dancer2::Plugin;
+use Module::Load
 
 my $cfg = {};
 my $schemas = {};
