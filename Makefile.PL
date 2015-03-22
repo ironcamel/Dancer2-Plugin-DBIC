@@ -21,7 +21,7 @@ my %WriteMakefileArgs = (
   "NAME" => "Dancer2::Plugin::DBIC",
   "PREREQ_PM" => {
     "DBIx::Class" => 0,
-    "Dancer2" => "0.153002",
+    "Dancer2" => "0.159002",
     "Module::Load" => 0
   },
   "TEST_REQUIRES" => {
@@ -39,7 +39,7 @@ my %WriteMakefileArgs = (
 
 my %FallbackPrereqs = (
   "DBIx::Class" => 0,
-  "Dancer2" => "0.153002",
+  "Dancer2" => "0.159002",
   "File::Spec" => 0,
   "IO::Handle" => 0,
   "IPC::Open3" => 0,
