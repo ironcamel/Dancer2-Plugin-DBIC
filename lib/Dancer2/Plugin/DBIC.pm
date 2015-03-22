@@ -5,14 +5,14 @@ package Dancer2::Plugin::DBIC;
 use strict;
 use warnings;
 use utf8;
-use Dancer2::Plugin qw(:no_dsl);
+use Dancer2::Plugin;
 use Module::Load;
 
 my $schemas = {};
 
 sub schema {
     my ($dsl, $name) = @_;
-    my $cfg = plugin_setting;
+    my $cfg = plugin_setting($dsl);
 
     if (not defined $name) {
         if (keys %$cfg == 1) {
