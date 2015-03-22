@@ -8,15 +8,11 @@ use utf8;
 use Dancer2::Plugin;
 use Module::Load;
 
-my $cfg = {};
 my $schemas = {};
-
-on_plugin_import {
-    $cfg = plugin_setting;
-};
 
 sub schema {
     my ($dsl, $name) = @_;
+    my $cfg = plugin_setting($dsl);
 
     if (not defined $name) {
         if (keys %$cfg == 1) {
