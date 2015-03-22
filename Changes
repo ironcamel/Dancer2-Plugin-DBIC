@@ -1,5 +1,8 @@
 Revision history for Dancer2-Plugin-DBIC
 
+0.0009	2015-03-22
+	This plugin must be callable from other plugins
+
 0.0005  2013-10-29
         Fixed tests again. Dancer2 removed the :tests import option.
         Thanks ennio (https://github.com/scriplit).
