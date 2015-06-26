@@ -17,7 +17,6 @@ sub _schema {
 sub _rset {
     my ($dsl, $rset_name) = @_;
     return schema($dsl)->resultset($rset_name);
-    return DBICx::Sugar::schema->resultset($rset_name);
 }
 
 register schema    => \&_schema;
