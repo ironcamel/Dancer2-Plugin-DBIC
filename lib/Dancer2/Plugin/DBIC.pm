@@ -10,7 +10,16 @@ use DBICx::Sugar;
 
 sub _schema {
     my ($dsl, $name) = @_;
-    DBICx::Sugar::config( plugin_setting );
+    my $config;
+    # ugly switch needed to support plugin2 plugins which use this plugin
+    # whilst still working for plugin1
+    if ( $dsl->app->can('with_plugin') ) {
+        $config = $dsl->config;
+    }
+    else {
+        $config = plugin_setting;
+    }
+    DBICx::Sugar::config( $config );
     return DBICx::Sugar::schema($name);
 };
 
