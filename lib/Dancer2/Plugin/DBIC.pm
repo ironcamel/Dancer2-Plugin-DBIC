@@ -13,7 +13,7 @@ sub _schema {
     my $config;
     # ugly switch needed to support plugin2 plugins which use this plugin
     # whilst still working for plugin1
-    if ( $dsl->can('with_plugin') ) {
+    if ( $dsl->app->can('with_plugin') ) {
         $config = $dsl->config;
     }
     else {
