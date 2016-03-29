@@ -4,7 +4,7 @@ Dancer2::Plugin::DBIC - DBIx::Class interface for Dancer2 applications
 
 # VERSION
 
-version 0.0011
+version 0.0012
 
 # SYNOPSIS
 
