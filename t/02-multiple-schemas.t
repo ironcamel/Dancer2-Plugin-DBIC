@@ -1,7 +1,7 @@
 use strict;
 use warnings;
 use lib 't/lib';
-use Test::More tests => 9;
+use Test::More tests => 8;
 use Test::Exception;
 
 use Dancer2;
@@ -61,21 +61,5 @@ throws_ok { schema('poo')->resultset('User')->find('bob') }
 throws_ok { schema->resultset('User')->find('bob') }
     qr/The schema default is not configured/,
     'Missing default schema error thrown';
-
-set plugins => {
-    DBIC => {
-        default => {
-            schema_class => 'Foo',
-            dsn =>  "dbi:SQLite:dbname=$dbfile1",
-        },
-        bar => {
-            schema_class => 'Foo',
-            dsn =>  "dbi:SQLite:dbname=$dbfile2",
-        },
-    }
-};
-
-lives_and { ok schema->resultset('User')->find('bob'), 'Found bob.' }
-    'Default schema';
 
 unlink $dbfile1, $dbfile2;
