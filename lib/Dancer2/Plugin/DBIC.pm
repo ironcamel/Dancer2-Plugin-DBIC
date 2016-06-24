@@ -40,7 +40,7 @@ register_plugin;
 =head1 SYNOPSIS
 
     use Dancer2;
-    use Dancer2::Plugin::DBIC qw(schema resultset rset);
+    use Dancer2::Plugin::DBIC;
 
     get '/users/:user_id' => sub {
         my $user = schema('default')->resultset('User')->find(param 'user_id');
@@ -64,6 +64,7 @@ This plugin makes it very easy to create L<Dancer2> applications that interface
 with databases.
 It automatically exports the keyword C<schema> which returns a
 L<DBIx::Class::Schema> object.
+It also exports the keywords C<resultset> and C<rset>.
 You just need to configure your database connection information.
 For performance, schema objects are cached in memory
 and are lazy loaded the first time they are accessed.

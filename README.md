@@ -4,12 +4,12 @@ Dancer2::Plugin::DBIC - DBIx::Class interface for Dancer2 applications
 
 # VERSION
 
-version 0.0013
+version 0.0014
 
 # SYNOPSIS
 
     use Dancer2;
-    use Dancer2::Plugin::DBIC qw(schema resultset rset);
+    use Dancer2::Plugin::DBIC;
 
     get '/users/:user_id' => sub {
         my $user = schema('default')->resultset('User')->find(param 'user_id');
@@ -33,6 +33,7 @@ This plugin makes it very easy to create [Dancer2](https://metacpan.org/pod/Danc
 with databases.
 It automatically exports the keyword `schema` which returns a
 [DBIx::Class::Schema](https://metacpan.org/pod/DBIx::Class::Schema) object.
+It also exports the keywords `resultset` and `rset`.
 You just need to configure your database connection information.
 For performance, schema objects are cached in memory
 and are lazy loaded the first time they are accessed.
