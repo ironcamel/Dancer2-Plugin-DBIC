@@ -21,7 +21,7 @@ sub _schema {
     }
     DBICx::Sugar::config( $config );
     return DBICx::Sugar::schema($name);
-};
+}
 
 sub _rset {
     my ($dsl, $rset_name) = @_;
