@@ -9,7 +9,7 @@ use Dancer2::Plugin;
 use DBICx::Sugar;
 
 sub _schema {
-    my ($dsl, $name) = @_;
+    my ($dsl, $name, $cfg) = @_;
     my $config;
     # ugly switch needed to support plugin2 plugins which use this plugin
     # whilst still working for plugin1
@@ -20,7 +20,7 @@ sub _schema {
         $config = plugin_setting;
     }
     DBICx::Sugar::config( $config );
-    return DBICx::Sugar::schema($name);
+    return DBICx::Sugar::schema($name, $cfg);
 }
 
 sub _rset {
