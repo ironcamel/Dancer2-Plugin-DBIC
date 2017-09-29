@@ -4,7 +4,7 @@ Dancer2::Plugin::DBIC - DBIx::Class interface for Dancer2 applications
 
 # VERSION
 
-version 0.0014
+version 0.0100
 
 # SYNOPSIS
 
@@ -164,18 +164,18 @@ For that example, your `schema_class` setting would be `Foo::Schema`.
 
 # CONTRIBUTORS
 
-- Alexis Sukrieh &lt;sukria@sukria.net>
+- Alexis Sukrieh <sukria@sukria.net>
 - Dagfinn Ilmari Mannsåker <[https://github.com/ilmari](https://github.com/ilmari)>
-- David Precious &lt;davidp@preshweb.co.uk>
+- David Precious <davidp@preshweb.co.uk>
 - ennio <[https://github.com/scriplit](https://github.com/scriplit)>
 - Fabrice Gabolde <[https://github.com/fgabolde](https://github.com/fgabolde)>
-- Franck Cuny &lt;franck@lumberjaph.net>
+- Franck Cuny <franck@lumberjaph.net>
 - Steven Humphrey <[https://github.com/shumphrey](https://github.com/shumphrey)>
 - Yanick Champoux <[https://github.com/yanick](https://github.com/yanick)>
 
 # AUTHOR
 
-Naveed Massjouni &lt;naveed@vt.edu>
+Naveed Massjouni <naveed@vt.edu>
 
 # COPYRIGHT AND LICENSE
 
